@@ -13,6 +13,7 @@
 ```sh
 git clone https://github.com/fuergaosi233/DoubanTop250OnServerless.git
 ```
+![show](./static/show.gif)
 ### 创建云函数
 1. 进入 腾讯云的[云函数控制台](https://console.cloud.tencent.com/scf/)
 2. 创建一个空白的云函数 （Nodejs10.15).
