@@ -33,12 +33,17 @@ async function getListByPage(page = 1) {
 }
 async function main() {
   let data = [];
-  await Promise.all(
-    Array.from(Array(25).keys()).map(async page => {
-      let page_data = await getListByPage(page + 1)
-      data.push(...page_data)
-    })
-  );
+  try{
+    await Promise.all(
+      Array.from(Array(25).keys()).map(async page => {
+        let page_data = await getListByPage(page + 1)
+        data.push(...page_data)
+      })
+    );
+  }catch{
+    return {error:'服务器访问频率过高被风控，请过段时间再试。'}
+  }
+
   data = data.sort((a,b)=> a.index-b.index);
   return data;
 }
