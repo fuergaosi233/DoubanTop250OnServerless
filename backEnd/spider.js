@@ -35,7 +35,7 @@ async function main() {
   let data = [];
   try{
     await Promise.all(
-      Array.from(Array(25).keys()).map(async page => {
+      Array.from(Array(10).keys()).map(async page => {
         let page_data = await getListByPage(page + 1)
         data.push(...page_data)
       })
