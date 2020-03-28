@@ -21,8 +21,13 @@ export default {
   },
   async mounted(){
     let res = await this.axios.get(baseUrl)
-    this.moviesList = res.data
-    this.title = '豆瓣 Top 250 🏆排名'
+    if (res.data.error){
+      this.title = res.data.error
+    }else{
+      this.moviesList = res.data
+      this.title = '豆瓣 Top 250 🏆排名'
+    }
+
   },
 }
 </script>
