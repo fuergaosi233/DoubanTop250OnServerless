@@ -8,17 +8,42 @@
 > 使用 Serverless 提供数据，使用 Vue 提供页面展示实现的豆瓣电影 TOP 250 排行榜
 
 ### ✨ [Demo](https://demo-1257685189.cos.ap-beijing.myqcloud.com/index.html)
+![show](./static/show.gif)
 ## 如何开始
 首先在本地拉取仓库
 ```sh
 git clone https://github.com/fuergaosi233/DoubanTop250OnServerless.git
 ```
-![show](./static/show.gif)
 ### 创建云函数
-1. 进入 腾讯云的[云函数控制台](https://console.cloud.tencent.com/scf/)
-2. 创建一个空白的云函数 （Nodejs10.15).
-3. 在函数代码部分选择上传文件夹 将 `backEnd` 文件夹上传.
-4. 在该函数页面选择`触发方式`->`添加触发方式`,在配置中选择`触发方式`为`API网关触发器`,同时给`启用集成响应`打勾,选择保存。即可获取到访问路径即接口`url`。
+1. 安装所需依赖 运行一下命令
+```sh
+npm install -g serverless
+cd backEnd && npm install
+```
+2. 部署服务, 在部署过程中会让你扫码登录，只需要扫码即可登录腾讯云账号，并自动创建服务。
+```sh
+sls --debug
+```
+3. 获取 `api` 地址，部署成功后会返回服务的各种信息格式如下：
+```sh
+  express: 
+    functionName:        express_component_1dakwo
+    functionOutputs: 
+      ap-shanghai: 
+        Name:        express_component_1dakwo
+        Runtime:     Nodejs8.9
+        Handler:     serverless-handler.handler
+        MemorySize:  128
+        Timeout:     3
+        Region:      ap-shanghai
+        Namespace:   default
+        Description: This is a function created by serverless component
+    region:              ap-shanghai
+    apiGatewayServiceId: service-f20ew411
+    url:                 http://service-f20ew411-1257685189.sh.apigw.tencentcs.com/release/
+    cns:                 (empty array)
+```
+其中 `url` 的值即为接口地址。
 ### 创建前端页面
 切换到 `frontEnd` 文件夹
 ```
