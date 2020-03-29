@@ -9,6 +9,7 @@ async function getListByPage(page = 1) {
     headers: {
       "User-Agent":
         "Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Mobile Safari/537.36",
+      Cookie:process.env.COOKIE?process.env.COOKIE:''
     }
   });
   let pics = $("div.pic>a", res.data);
