@@ -45,6 +45,7 @@ sls --debug
 ```
 其中 `url` 的值即为接口地址。
 ### 创建前端页面
+#### 构建静态资源
 切换到 `frontEnd` 文件夹
 ```
 cd frontEnd
@@ -65,6 +66,7 @@ export default urls[Math.floor(Math.random() * urls.length)];
 ```sh
 yarn & vue build
 ```
+#### 部署
 在腾讯的[对象存储](https://console.cloud.tencent.com/cos5) 中创建一个新的存储桶，随后将dist目录中的文件上传至，存储桶中。
 你的存储桶目录结构应该如下
 ```sh
@@ -72,7 +74,15 @@ yarn & vue build
 ├── index.html
 └── js
 ```
-上传完成后选择 `index.html` 文件的`详情`选项，其中`对象地址`参数即是应用的地址，访问该 uri 即可使用应用。
+#### 配置 COS
+上传完成后选择 `index.html` 文件的`详情`选项，
+![setting](./static/indexSetting.png)
+为防止出现乱码 我们需要在详情部分的`自定义Headers`部分，指定编码方式。
+![coding](./static/encoding.png)
+最后 在`基本信息`部分我们就可以找到对象地址。
+![end](./static/end.png)
+`对象地址`参数即是应用的地址，访问该 `Uri` 即可使用应用。
+
 ## 出现`服务器访问频率过高被风控，请过段时间再试。`是怎么回事。
 由于在服务器使用了异步访问了豆瓣的 Top250排名页面，访问频率过高很容易被服务器拉黑，禁止访问。所以会出现如下报错。
 解决方案有：
